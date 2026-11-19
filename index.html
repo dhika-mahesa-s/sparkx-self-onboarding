@@ -17,6 +17,13 @@
   <header class="top-header">
     <div class="header-container">
       <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
         <a href="#portal" class="brand-wrapper" id="brandHomeLink" title="Go to Documentation Portal Home">
           <span class="brand-logo">spark<span class="logo-x">X</span></span>
           <span class="brand-divider"></span>
@@ -47,6 +54,9 @@
       <div id="readingProgressBar" class="reading-progress-bar"></div>
     </div>
   </header>
+
+  <!-- Mobile Sidebar Drawer Backdrop -->
+  <div id="mobileSidebarBackdrop" class="mobile-sidebar-backdrop" aria-hidden="true"></div>
 
   <!-- ==========================================================================
        HOME PORTAL VIEW: SparkX Documentation & Knowledge Hub

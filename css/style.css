@@ -3499,37 +3499,104 @@ body {
   }
 }
 
+/* Mobile Hamburger Menu Button & Drawer Backdrop */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.mobile-menu-btn:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4f46e5;
+}
+
+.mobile-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 205;
+}
+
 /* Tablets & Landscape (<= 1024px) */
 @media (max-width: 1024px) {
-  .layout-container {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin: 24px auto 64px;
+  body.is-guide-view .mobile-menu-btn {
+    display: inline-flex;
   }
 
-  .sidebar-sticky {
-    position: relative;
-    top: 0;
-    max-height: none;
+  .floating-sidebar-btn,
+  body.sidebar-is-collapsed .floating-sidebar-btn {
+    display: none !important;
   }
 
-  body.sidebar-is-collapsed .sidebar-sticky {
-    display: none;
-  }
-
+  .layout-container,
   body.sidebar-is-collapsed .layout-container {
     grid-template-columns: 1fr;
     gap: 0;
+    margin: 24px auto 64px;
+  }
+
+  /* Transform Sidebar into Off-Canvas Hamburger Drawer */
+  .sidebar-sticky,
+  body.sidebar-is-collapsed .sidebar-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 86vw);
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 210;
+    padding: 14px;
+    background: rgba(248, 250, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 12px 0 40px rgba(15, 23, 42, 0.18);
+    transform: translateX(-105%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    overflow-y: auto;
+  }
+
+  body.mobile-drawer-open .sidebar-sticky,
+  body.mobile-drawer-open.sidebar-is-collapsed .sidebar-sticky {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.mobile-drawer-open .mobile-sidebar-backdrop {
+    display: block;
+  }
+
+  .stepper-card {
+    background: #ffffff;
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
   }
 
   .stepper-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .sidebar-group {
-    grid-column: 1 / -1;
+  .step-help-box {
+    display: block;
   }
 
   .setup-subnav {
