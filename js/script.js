@@ -1590,6 +1590,18 @@ function initSidebarDropdown() {
   const mobileBackdrop = document.getElementById('mobileSidebarBackdrop');
 
   function setMobileDrawerOpen(open) {
+    // Place the backdrop right before the visible sidebar so both always share
+    // the same stacking context (backdrop can never render above the drawer).
+    if (open && mobileBackdrop) {
+      const visibleSidebar = Array.from(document.querySelectorAll('.sidebar-sticky'))
+        .find(el => {
+          const view = el.closest('.guide-view');
+          return view && window.getComputedStyle(view).display !== 'none';
+        });
+      if (visibleSidebar && visibleSidebar.previousElementSibling !== mobileBackdrop) {
+        visibleSidebar.parentNode.insertBefore(mobileBackdrop, visibleSidebar);
+      }
+    }
     document.body.classList.toggle('mobile-drawer-open', open);
     if (mobileMenuBtn) {
       mobileMenuBtn.setAttribute('aria-expanded', String(open));
