@@ -3525,9 +3525,7 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(15, 23, 42, 0.5);
   z-index: 205;
 }
 
@@ -3542,11 +3540,13 @@ body {
     display: none !important;
   }
 
+  /* Release stacking context so fixed drawer (.sidebar-sticky) sits above backdrop & header */
   .layout-container,
   body.sidebar-is-collapsed .layout-container {
     grid-template-columns: 1fr;
     gap: 0;
     margin: 24px auto 64px;
+    z-index: auto;
   }
 
   /* Transform Sidebar into Off-Canvas Hamburger Drawer */
@@ -3558,18 +3558,19 @@ body {
     bottom: 0;
     width: min(320px, 86vw);
     height: 100vh;
-    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     z-index: 210;
-    padding: 14px;
-    background: rgba(248, 250, 255, 0.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 12px 0 40px rgba(15, 23, 42, 0.18);
+    padding: 18px 16px 28px;
+    background: #ffffff;
+    box-shadow: 12px 0 40px rgba(15, 23, 42, 0.22);
     transform: translateX(-105%);
     opacity: 0;
     pointer-events: none;
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   body.mobile-drawer-open .sidebar-sticky,
@@ -3584,9 +3585,11 @@ body {
   }
 
   .stepper-card {
-    background: #ffffff;
+    background: transparent;
     box-shadow: none;
-    border: 1px solid #e2e8f0;
+    border: none;
+    padding: 0;
+    border-radius: 0;
   }
 
   .stepper-nav {
@@ -3646,11 +3649,6 @@ body {
     padding: 0 16px;
     margin: 18px auto 56px;
     gap: 20px;
-  }
-
-  .stepper-card {
-    padding: 18px 16px;
-    border-radius: 18px;
   }
 
   .onboarding-section {

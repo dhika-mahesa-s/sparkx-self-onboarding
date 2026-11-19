@@ -1,4 +1,4 @@
-﻿/**
+/**
  * SparkX Self-Onboarding Guideline — Interactive Controller
  * Features:
  * - Categorized step hierarchy (Step 3, Step 4, Step 5 with 1..8 and sub a..e/a..b, Step 6)
