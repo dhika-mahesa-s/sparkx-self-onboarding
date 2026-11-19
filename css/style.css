@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SparkX Self-Onboarding Guideline — Design System & Stylesheet
    ========================================================================== */
 
@@ -793,6 +793,7 @@ body.sidebar-is-collapsed .content-area {
   display: flex;
   flex-direction: column;
   gap: 48px;
+  min-width: 0;
 }
 
 .onboarding-section {
@@ -1368,7 +1369,7 @@ body.sidebar-is-collapsed .content-area {
    -------------------------------------------------------------------------- */
 .dual-pathways-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 24px;
   margin: 32px 0;
 }
@@ -1569,7 +1570,7 @@ body.sidebar-is-collapsed .content-area {
 
 .setup-meta-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 18px;
   margin-bottom: 24px;
 }
@@ -2982,7 +2983,7 @@ body {
 /* Onboarding Cards Grid */
 .portal-onboarding-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 24px;
 }
 
@@ -3150,7 +3151,7 @@ body {
 /* Manuals Grid (3 Cards) */
 .portal-manuals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 20px;
 }
 
@@ -3446,4 +3447,374 @@ body {
   border-radius: var(--radius-md);
   border: 1px solid #bfdbfe;
   line-height: 1.5;
+}
+
+/* ==========================================================================
+   Comprehensive Cross-Device Responsive Overrides (All Pages & Sections)
+   ========================================================================== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.onboarding-section,
+.setup-step-card,
+.g-step,
+.g-step-instructions,
+.g-list li,
+.instruction-item {
+  min-width: 0;
+}
+
+.g-list li > span:last-child,
+.instruction-item > span:last-child {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.g-list code,
+.instruction-item code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.prop-card li > span:first-child {
+  flex-shrink: 0;
+}
+
+/* Large Tablets & Small Laptops (<= 1200px) */
+@media (max-width: 1200px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+
+  .layout-container {
+    gap: 28px;
+    padding: 0 20px;
+  }
+
+  .onboarding-section {
+    padding: 32px 28px;
+  }
+}
+
+/* Tablets & Landscape (<= 1024px) */
+@media (max-width: 1024px) {
+  .layout-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 24px auto 64px;
+  }
+
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+
+  body.sidebar-is-collapsed .sidebar-sticky {
+    display: none;
+  }
+
+  body.sidebar-is-collapsed .layout-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .stepper-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
+
+  .sidebar-group {
+    grid-column: 1 / -1;
+  }
+
+  .setup-subnav {
+    margin: 0 0 24px;
+    top: calc(var(--header-height) + 6px);
+  }
+}
+
+/* Tablets Portrait & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .brand-divider,
+  .brand-badge {
+    display: none;
+  }
+
+  .back-portal-btn {
+    padding: 5px 10px;
+    font-size: 11.5px;
+    margin-left: 6px;
+    white-space: nowrap;
+  }
+
+  .portal-view {
+    padding: 28px 16px 64px;
+  }
+
+  .portal-hero {
+    margin: 12px auto 36px;
+  }
+
+  .portal-onboarding-grid,
+  .portal-manuals-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .portal-card,
+  .portal-manual-card {
+    padding: 22px 18px;
+  }
+
+  .portal-category-title {
+    font-size: 21px;
+  }
+
+  .layout-container {
+    padding: 0 16px;
+    margin: 18px auto 56px;
+    gap: 20px;
+  }
+
+  .stepper-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .onboarding-section {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .section-header-block {
+    margin-bottom: 24px;
+  }
+
+  .section-lead-text {
+    font-size: 14.5px;
+  }
+
+  .dual-pathways-grid,
+  .setup-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .setup-step-card {
+    padding: 22px 18px;
+    border-radius: 18px;
+    margin-bottom: 24px;
+  }
+
+  .setup-step-heading {
+    font-size: 18px;
+  }
+
+  .g-path-bar {
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+    font-size: 10.5px;
+  }
+
+  .floating-sidebar-btn {
+    top: 72px;
+    left: 12px;
+    padding: 7px 13px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  .hero-welcome-card {
+    padding: 24px 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero-welcome-title {
+    font-size: 21px;
+  }
+
+  .hero-welcome-desc {
+    font-size: 14px;
+  }
+
+  .pathway-card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .org-stage-item {
+    padding: 18px 16px;
+  }
+
+  .process-step-item {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .step-num-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .wizard-category-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  .setup-subnav {
+    top: var(--header-height);
+    gap: 6px;
+    padding: 10px 12px;
+    margin: 0 0 20px;
+    border-radius: 12px;
+  }
+
+  .setup-subnav a {
+    padding: 7px 10px;
+    font-size: 11.5px;
+  }
+
+  .hr-prep-box {
+    padding: 18px 14px;
+  }
+
+  .strict-access-card {
+    padding: 18px 16px;
+  }
+
+  .g-path-card.is-admin {
+    padding: 20px 16px !important;
+  }
+
+  .portal-info-modal {
+    padding: 12px;
+  }
+
+  .portal-info-dialog {
+    padding: 22px 18px;
+    border-radius: 16px;
+    max-height: 90vh;
+  }
+
+  .portal-info-title {
+    font-size: 19px;
+    padding-right: 30px;
+  }
+
+  .lightbox-modal {
+    padding: 16px 10px;
+  }
+
+  .lightbox-caption-bar {
+    padding: 10px 14px;
+    font-size: 12.5px;
+    gap: 10px;
+  }
+}
+
+/* Small Mobile Phones (<= 480px) */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .brand-logo {
+    font-size: 21px;
+  }
+
+  .brand-logo .logo-x {
+    font-size: 25px;
+  }
+
+  .back-portal-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    margin-left: 2px;
+    max-width: 118px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-controls {
+    gap: 6px;
+  }
+
+  .progress-pill {
+    padding: 4px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .lang-toggle-btn {
+    padding: 2px;
+  }
+
+  .lang-toggle-btn span {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  .portal-hero-title {
+    font-size: 26px;
+  }
+
+  .portal-hero-lead {
+    font-size: 14.5px;
+  }
+
+  .portal-card-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .onboarding-section {
+    padding: 20px 14px;
+  }
+
+  .g-shot-bar {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .g-zoom-btn {
+    padding: 3px 8px;
+    font-size: 10.5px;
+  }
+
+  .g-instruction-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .g-finish-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 16px;
+  }
+
+  .mockup-toolbar {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .mockup-address-bar {
+    padding: 3px 10px;
+    font-size: 11px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
